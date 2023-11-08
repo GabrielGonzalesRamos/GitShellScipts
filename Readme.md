@@ -1,11 +1,27 @@
-<img width="200" src="img/process-svgrepo-com.svg" align="right"/>
+<img width="200" src="img/carrying-box-silhouette-svgrepo-com.svg" align="right"/>
 
-# **GIT SHELL SCRIPTS** [![Downloads](https://img.shields.io/badge/any_text-Git_Shell_Scipts-blue?style=for-the-badge&logo=gnubash&logoColor=%23ffffff&label=GGONZALES&labelColor=%231C1C1C&color=%23F4831B)](http://pepy.tech/count/shallow-backup)
+# **COMPRESSION S3** [![Downloads](https://img.shields.io/badge/any_text-Git_Shell_Scipts-blue?style=for-the-badge&logo=gnubash&logoColor=%23ffffff&label=GGONZALES&labelColor=%231C1C1C&color=%23F4831B)](http://pepy.tech/count/shallow-backup)
 
-This **`GitHub`** repository hosts a collection of **`Bash`**. scripts. These scripts provide solutions for two main scenarios:
+![Flow](img/Evidence1.png)
 
-- **Compression and Loading of Log Files into S3**: These scripts enable the compression of log files and their subsequent transfer and storage in an S3 service. This streamlines the efficient management and storage of logs, which is crucial in server and web application environments.
+Esta rama de GitHub alberga un script de shell diseñado para simplificar y automatizar la gestión de registros de logs en un entorno de servidor JBoss. El script realiza una serie de tareas esenciales de manera ordenada y eficiente. Aquí se describe el flujo de trabajo del script en pasos detallados:
 
-- **Matching Patterns in Large Files Using Regular Expressions**: These scripts are designed to search for specific patterns and matches within large files using regular expressions. This is useful for identifying critical information or errors in extensive logs.
+Obtención del Nombre del Host:
+El script inicia obteniendo el nombre del host en el que se está ejecutando mediante el comando hostname. Luego, utiliza grep con expresiones regulares para extraer un nombre específico de JBoss, como "jbossX" o "jboss-XXpse". El resultado se almacena en la variable hostname.
 
-To access each of these scripts, you need to navigate through the different branches of the project. Each branch represents a specific set of scripts related to a particular task. The branch organization allows for easy selection and access to the required functionality based on the use case.
+Asignación de Valor a la Variable 'node':
+A continuación, el script utiliza una estructura case para asignar un valor a la variable node en función del valor de hostname. Dependiendo de hostname, se asigna un nombre de nodo específico a la variable node, como "ND01", "ND02", "PSE1", etc.
+
+Función 'moving_logs':
+El script define una función llamada moving_logs que se encarga de las siguientes acciones:
+
+a. Cambio de Directorio de Trabajo: Cambia el directorio de trabajo actual a /home/bizlinks/bizlinks/log/.
+
+b. Iteración y Cambio de Nombre de Archivos: Itera a través de los archivos en ese directorio que cumplen ciertas condiciones. Busca archivos con nombres que coincidan con el patrón "bizlinksOSE_ws.log.AÑO --date="yesterday")_NUMERO". Luego, extrae el número final del nombre del archivo y realiza un cambio de nombre, eliminando los dos últimos dígitos de ese número.
+
+c. Compresión de Archivos y Cambio de Nombre: Itera nuevamente a través de los mismos archivos que coinciden con el patrón "bizlinksOSE_ws.log.AÑO --date="yesterday")". Comprime cada archivo en un archivo .tar.gz con un nombre que incluye el valor de node. Luego, realiza un cambio de nombre en el archivo .tar.gz, eliminando una parte de su nombre.
+
+d. Transferencia a AWS S3: Utiliza el comando aws para mover los archivos .tar.gz al bucket S3 oselog/$node/.
+
+Llamada a la Función 'moving_logs':
+Finalmente, el script llama a la función moving_logs, lo que desencadena todas las acciones definidas en la función, como el cambio de nombre de archivos, la compresión y la carga de archivos en un bucket S3.
