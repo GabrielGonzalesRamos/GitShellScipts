@@ -64,5 +64,3 @@
         </ul>
     </div>
 </div>
-
-![Code Image](img/carbon.png)
