@@ -4,6 +4,8 @@
 
 This **`GitHub`** repository hosts a collection of **`Bash`**. scripts. These scripts provide solutions for two main scenarios:
 
+![Shallow Backup GIF Demo](img/gif.gif)
+
 - **Compression and Loading of Log Files into S3**: These scripts enable the compression of log files and their subsequent transfer and storage in an S3 service. This streamlines the efficient management and storage of logs, which is crucial in server and web application environments.
 
 - **Matching Patterns in Large Files Using Regular Expressions**: These scripts are designed to search for specific patterns and matches within large files using regular expressions. This is useful for identifying critical information or errors in extensive logs.
