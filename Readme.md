@@ -2,18 +2,8 @@
 
 # **GREP AND SED** [![Downloads](https://img.shields.io/badge/grep_and_sed-you_like-blue?style=for-the-badge&logo=linux&labelColor=%23797EF6&color=%234ADEDE)](http://pepy.tech/count/shallow-backup)
 
-<div style="flex: 50%;">
-        <p>
-            En esta rama de <strong><code>GitHub</code></strong>, se encuentra un script de shell diseñado para
-            simplificar y automatizar la gestión de registros de logs en un entorno de servidor
-            <strong><code>JBoss</code></strong>. El script realiza una serie de tareas esenciales de manera organizada y
-            eficiente. A continuación, se describe el flujo de trabajo del script en pasos detallados:
-        </p>
-        <ul>
-            <li>
-                <strong>Creación de directorios:</strong><br>
-                Se crea un directorio llamado <strong><code>clientes</strong></code> dentro de <strong><code>/my/personal/directory/log/</strong></code>
-            </li>
-        </ul>
-    </div>
-</div>
+Dentro de esta rama de **`GitHub`**, se encuentra un script de **`bash`** diseñado para descargar masivos archivos **`logs`**  provenientes de un servicio `S3`.
+
+Se Aplican filtros necesarios con **`grep`** para recolectar información relevante. Además, a cada filtro se le agrega una etiqueta con el nombre del servidor utilizando el comando **`ex`**, dichos parámetros utilizados con el comando **`ex`**  se detallarán más adelante. Estos procesos están definidos dentro de una función llamada **`looking_document`**.
+
+Finalmente, se utiliza el comando **`sed`** para sustituir caracteres como corchetes **`[]`** por espacios en blanco, así como guiones **`-`**. Se emplean tuberías para capturar la salida del comando **`sed`** y procesarla con el comando **`awk`**, utilizando un espacio en blanco como separador de campos.
